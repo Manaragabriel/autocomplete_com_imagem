@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </head>
+
+<style>
+    .autocomplete{
+         background: red;
+    }
+    .autocomplete img{
+        width: 100px;
+    }
+</style>
+<body>
+
+    <main class="col-md-6">
+       <input onkeyup="autocompletar()" class="form-control" type="text" id="search"/>
+       <div class="autocomplete">
+    
+       </div>
+    </main>
+
+
+<script>
+
+    function autocompletar(){
+        
+        
+        var search= $("#search").val().toLowerCase();
+        console.log(search)
+        if(search.length > 0){
+            var dados= [
+                {img: 'https://play.google.com/intl/en_us/badges/images/generic/pt-br-play-badge-border.png',titulo: "Python"},
+                {img: 'https://play.google.com/intl/en_us/badges/images/generic/pt-br-play-badge-border.png',titulo: "PHP"},
+                {img: 'https://play.google.com/intl/en_us/badges/images/generic/pt-br-play-badge-border.png',titulo: "Javascript"},
+                {img: 'https://play.google.com/intl/en_us/badges/images/generic/pt-br-play-badge-border.png',titulo: "C#"},
+                {img: 'https://play.google.com/intl/en_us/badges/images/generic/pt-br-play-badge-border.png',titulo: "Java"},
+
+            ]
+            var result= []
+            dados.filter((value,index)=>{
+                if(value.titulo.toLocaleLowerCase().includes(search)){
+                    result.push({titulo: value.titulo,img: value.img})
+                }
+            })
+            var elem=''
+            for(var i=0; i < result.length; i++){
+                elem += "<img src='"+result[i].img+"'/><a>"+result[i].titulo+"</a><br>"
+            }
+            $(".autocomplete").html(elem)
+        }else{
+            $(".autocomplete").html('')
+        }
+        
+        
+    }
+
+</script>
+</body>
+
+</html>
